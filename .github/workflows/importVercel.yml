@@ -22,12 +22,12 @@ jobs:
           curl -X POST https://api.vercel.com/v9/projects \
             -H "Authorization: Bearer $VERCEL_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{
+            -d '{
               "name": "'"$PROJECT_NAME"'",
               "gitRepository": {
                 "type": "github",
                 "repo": "'"$REPO_URL"'"
               },
-              "framework": "node", # 預設為 Node.js，你可以根據需求調整
+              "framework": "node",
               "orgId": "'"$ORG_ID"'"
-            }"
+            }'
