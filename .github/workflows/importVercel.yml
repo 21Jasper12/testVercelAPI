@@ -29,5 +29,4 @@ jobs:
                 "repo": "'"$REPO_URL"'"
               },
               "framework": "node",
-              "orgId": "'"$ORG_ID"'"
             }'
