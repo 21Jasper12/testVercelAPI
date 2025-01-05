@@ -28,5 +28,5 @@ jobs:
                 "type": "github",
                 "repo": "'"$REPO_URL"'"
               },
-              "framework": "node",
+              "framework": "node"
             }'
