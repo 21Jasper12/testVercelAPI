@@ -29,3 +29,17 @@ jobs:
                 "repo": "'"$REPO_URL"'"
               }
             }'
+            
+            HTTP_STATUS=$(tail -n1 <<< "$RESPONSE")
+            BODY=$(cat response.json)
+
+            if [ "$HTTP_STATUS" -ge 400 ]; then
+            echo "Error: Failed to create project on Vercel."
+            echo "HTTP Status: $HTTP_STATUS"
+            echo "Response Body: $BODY"
+            exit 1
+            else
+            echo "Project successfully created on Vercel."
+            echo "HTTP Status: $HTTP_STATUS"
+            echo "Response Body: $BODY"
+            fi
