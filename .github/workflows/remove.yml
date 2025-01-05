@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Remove project from Vercel
         run: |
-          curl -X DELETE "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_ACCOUNT_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
+          curl -X DELETE "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_PROJECT_ID }}" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_ACCOUNT_KEY }}"
