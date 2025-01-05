@@ -1,0 +1,19 @@
+{
+  "name": "testjsonserver",
+  "version": "1.0.0",
+  "main": "api/data.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vercel dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "csv-parser": "^3.1.0",
+    "csv-writer": "^1.6.0",
+    "express": "^4.21.2",
+    "fs": "latest",
+    "path": "latest"
+  }
+}
