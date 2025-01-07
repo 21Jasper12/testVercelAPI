@@ -15,5 +15,5 @@ jobs:
       - name: Import GitHub Repository to Vercel
         run: |
           npx vercel --prod --token ${{ secrets.VERCEL_ACCOUNT_KEY }} \
-          --org-id ${{ secrets.VERCEL_ORG_ID }} \
+          --scope ${{ secrets.VERCEL_ORG_ID }} \
           --project-name ${{ github.event.inputs.project_name }}
