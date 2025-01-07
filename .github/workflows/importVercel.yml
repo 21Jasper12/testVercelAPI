@@ -13,33 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Import GitHub Repository to Vercel
-        env:
-          PROJECT_NAME: ${{ github.event.inputs.project_name }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_ACCOUNT_KEY }}
-          REPO_URL: ${{ github.repository }} # 自動獲取當前 GitHub 儲存庫名稱
-          ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
         run: |
-          curl -X POST https://api.vercel.com/v9/projects \
-            -H "Authorization: Bearer $VERCEL_TOKEN" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "name": "'"$PROJECT_NAME"'",
-              "gitRepository": {
-                "type": "github",
-                "repo": "'"$REPO_URL"'"
-              }
-            }'
-            
-            HTTP_STATUS=$(tail -n1 <<< "$RESPONSE")
-            BODY=$(cat response.json)
-
-            if [ "$HTTP_STATUS" -gt 400 ]; then
-            echo "Error: Failed to create project on Vercel."
-            echo "HTTP Status: $HTTP_STATUS"
-            echo "Response Body: $BODY"
-            exit 1
-            else
-            echo "Project successfully created on Vercel."
-            echo "HTTP Status: $HTTP_STATUS"
-            echo "Response Body: $BODY"
-            fi
+          npx vercel --prod --token ${{ secrets.VERCEL_ACCOUNT_KEY }} \
+          --org-id ${{ secrets.VERCEL_ORG_ID }} \
+          --project-name ${{ github.event.inputs.project_name }}
