@@ -26,9 +26,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 配置 Vercel 並進行部署
+      # 運行 Vercel build
+      - name: Run Vercel Build (local build simulation)
+        run: |
+          echo "Running vercel build"
+          npx vercel build --token ${{ secrets.VERCEL_ACCOUNT_KEY }} \
+            --scope ${{ secrets.VERCEL_ORG_NAME }} --yes
+
+      # 如果構建成功，部署到 Vercel
       - name: Deploy to Vercel
         run: |
+          echo "Deploying to Vercel"
           echo '{"name": "${{ github.event.inputs.project_name }}"}' > vercel.json
           npx vercel --prod --token ${{ secrets.VERCEL_ACCOUNT_KEY }} \
-          --scope ${{ secrets.VERCEL_ORG_NAME }} --yes
+            --scope ${{ secrets.VERCEL_ORG_NAME }} --yes
